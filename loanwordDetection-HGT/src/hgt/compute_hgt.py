@@ -16,8 +16,42 @@ the algorithm is an executable and a pearl script
     - results.txt
 
 
-
 '''
+import glob, subprocess, os, shutil
+import create_inputFiles
+
+def hgt_computation_fromFiles():
+    
+    ##get all files containing the trees for the computation for each concept
+    #listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/pmiMultidata/*.nwk")
+    
+    ##testing
+    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
+    #####
+    for treefile in listfiles:
+        ##concept name
+        concept = treefile.split("/")[-1].split("+")[0]
+        p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile,shell=True)
+        os.waitpid(p.pid,0)
+        
+        ####move relevant files
+        #move output.txt
+        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+output.txt")
+        ##move results.txt
+        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+results.txt")
+        ##move log.txt
+        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+log.txt")
+
+
+    #for filename in os.listdir("temp"):
+    #    os.remove(os.path.join("temp",filename))
+    
+    
+
 
 if __name__ == '__main__':
-    pass
+    method = "pmiMultidata"
+    hgt_computation_fromFiles()
+    
+    
+    

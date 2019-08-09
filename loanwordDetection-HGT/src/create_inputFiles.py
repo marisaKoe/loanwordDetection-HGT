@@ -52,6 +52,7 @@ def create_files(pathCT, pathBS, method):
     BSFiles = glob.glob(pathBS+"*.rooted")
     ##fill the dictionary with the file names
     fileDict = defaultdict(list)
+    overallDict = defaultdict(dict)
     for ctName in CTFiles:
         concept = ctName.split("/")[-1].split(".")[0]
         if "[" and "]" in concept:
@@ -72,10 +73,14 @@ def create_files(pathCT, pathBS, method):
             bs = fbs.readlines()
             
         ##write files into folder
-        with open("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/"+method+"/"+concept+"+hgt.nwk","w") as fout:
+        path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/"+method+"/"+concept+"+hgt.nwk"
+        overallDict[method][concept]=path
+        with open(path,"w") as fout:
             fout.write(lt+ct)
             for line in bs:
                 fout.write(line)
+                
+    return overallDict
     
 
         
