@@ -46,7 +46,24 @@ def hgt_computation_fromFiles():
     #for filename in os.listdir("temp"):
     #    os.remove(os.path.join("temp",filename))
     
+
+def hgt_computation_run(pathCT, pathBS, method):
+    ##get the dictionary from the method
+    overallDict = create_inputFiles.create_files(pathCT, pathBS, method)
     
+    for method, conceptDict in overallDict.items():
+        for concept, treefile in conceptDict.items():
+            p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile,shell=True)
+            os.waitpid(p.pid,0)
+            
+            ####move relevant files
+            #move output.txt
+            shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+output.txt")
+            ##move results.txt
+            shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+results.txt")
+            ##move log.txt
+            shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+log.txt")
+                
 
 
 if __name__ == '__main__':
