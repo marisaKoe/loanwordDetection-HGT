@@ -23,26 +23,17 @@ import create_inputFiles
 def hgt_computation_fromFiles():
     
     ##get all files containing the trees for the computation for each concept
-    #listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/pmiMultidata/*.nwk")
+    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/pmiMultidata/*.nwk")
     
     ##testing
-    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
-    #####
+    #listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
     for treefile in listfiles:
+        print treefile
         ##concept name
         concept = treefile.split("/")[-1].split("+")[0]
-        p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile,shell=True)
-        os.waitpid(p.pid,0)
+        print concept
+        run_hgt(concept, treefile)
         
-        ####move relevant files
-        #move output.txt
-        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+output.txt")
-        ##move results.txt
-        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+results.txt")
-        ##move log.txt
-        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+log.txt")
-
-
     #for filename in os.listdir("temp"):
     #    os.remove(os.path.join("temp",filename))
     
@@ -65,6 +56,18 @@ def hgt_computation_run(pathCT, pathBS, method):
             shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+log.txt")
                 
 
+    
+def run_hgt(concept,treefile):
+        print "in hgt run"
+        p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile+" -mode=multicheck -criterion=bd -bootstrap=yes",shell=True)
+        os.waitpid(p.pid,0)
+        ####move relevant files
+        ##move output.txt
+        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+output.txt")
+        ##move results.txt
+        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+results.txt")
+        ##move log.txt
+        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+log.txt")
 
 if __name__ == '__main__':
     method = "pmiMultidata"
