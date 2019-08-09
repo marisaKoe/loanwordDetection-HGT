@@ -72,7 +72,7 @@ def create_files(pathCT, pathBS, method):
             bs = fbs.readlines()
             
         ##write files into folder
-        with open("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/inputFilesHGT/"+method+"/"+concept+"+hgt.nwk","w") as fout:
+        with open("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/"+method+"/"+concept+"+hgt.nwk","w") as fout:
             fout.write(lt+ct)
             for line in bs:
                 fout.write(line)
@@ -90,7 +90,7 @@ def create_files(pathCT, pathBS, method):
 if __name__ == '__main__':
     method = "pmiMultidata"
     pathCT = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
-    pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/inputTrees/"+method+"/"
+    pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
     create_files(pathCT, pathBS,method)
     
     
