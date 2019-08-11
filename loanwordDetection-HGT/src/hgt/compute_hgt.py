@@ -14,6 +14,8 @@ the algorithm is an executable and a pearl script
 + move files, which are need for further analysis -> rename them
     - output.txt
     - results.txt
+    
+check segmentation fault (core dumped)
 
 
 '''
@@ -23,7 +25,7 @@ import create_inputFiles
 def hgt_computation_fromFiles():
     
     ##get all files containing the trees for the computation for each concept
-    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/pmiMultidata/*.nwk")
+    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataInput/*.nwk")
     
     ##testing
     #listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
@@ -49,25 +51,26 @@ def hgt_computation_run(pathCT, pathBS, method):
             
             ####move relevant files
             #move output.txt
-            shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+output.txt")
+            shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+output.txt")
             ##move results.txt
-            shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+results.txt")
+            shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+results.txt")
             ##move log.txt
-            shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/"+method+"/"+concept+"+log.txt")
+            shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+log.txt")
                 
 
     
 def run_hgt(concept,treefile):
         print "in hgt run"
+        print treefile
         p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile+" -mode=multicheck -criterion=bd -bootstrap=yes",shell=True)
         os.waitpid(p.pid,0)
         ####move relevant files
         ##move output.txt
-        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+output.txt")
+        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+output.txt")
         ##move results.txt
-        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+results.txt")
+        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+results.txt")
         ##move log.txt
-        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/outputFilesHGT/pmiMultidata/"+concept+"+log.txt")
+        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+log.txt")
 
 if __name__ == '__main__':
     method = "pmiMultidata"
