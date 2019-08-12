@@ -16,7 +16,7 @@ the algorithm is an executable and a pearl script
     - results.txt
     
 check segmentation fault (core dumped)
-
+-> not sure whether this fault can be solved her. seems to have sth to do with the folder structure. Move everything into another folder and run it on the server.
 
 '''
 import glob, subprocess, os, shutil
@@ -25,10 +25,10 @@ import create_inputFiles
 def hgt_computation_fromFiles():
     
     ##get all files containing the trees for the computation for each concept
-    listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataInput/*.nwk")
+    listfiles = glob.glob("/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataInput/*.nwk")
     
     ##testing
-    #listfiles = glob.glob("/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
+    #listfiles = glob.glob("/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
     for treefile in listfiles:
         print treefile
         ##concept name
@@ -46,31 +46,34 @@ def hgt_computation_run(pathCT, pathBS, method):
     
     for method, conceptDict in overallDict.items():
         for concept, treefile in conceptDict.items():
-            p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile,shell=True)
-            os.waitpid(p.pid,0)
-            
-            ####move relevant files
-            #move output.txt
-            shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+output.txt")
-            ##move results.txt
-            shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+results.txt")
-            ##move log.txt
-            shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+log.txt")
-                
+            run_hgt(concept, treefile)
+#             p = subprocess.Popen('exec perl ./run_hgt.pl -inputfile='+treefile,stdout=subprocess.PIPE,shell=True)
+#             os.waitpid(p.pid,0)
+#             p.kill()
+#             ####move relevant files
+#             #move output.txt
+#             shutil.move("output.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+output.txt")
+#             ##move results.txt
+#             shutil.move("results.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+results.txt")
+#             ##move log.txt
+#             shutil.move("log.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+log.txt")
+#                 
 
     
 def run_hgt(concept,treefile):
         print "in hgt run"
         print treefile
-        p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile+" -mode=multicheck -criterion=bd -bootstrap=yes",shell=True)
+        #p = subprocess.Popen('exec perl ./run_hgt.pl -inputfile='+treefile,stdout=subprocess.PIPE,shell=True)
+        p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile+' -bootstrap=yes',shell=True)
         os.waitpid(p.pid,0)
+        #p.kill()
         ####move relevant files
         ##move output.txt
-        shutil.move("output.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+output.txt")
+        shutil.move("output.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+output.txt")
         ##move results.txt
-        shutil.move("results.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+results.txt")
+        shutil.move("results.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+results.txt")
         ##move log.txt
-        shutil.move("log.txt","/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+log.txt")
+        shutil.move("log.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+log.txt")
 
 if __name__ == '__main__':
     method = "pmiMultidata"

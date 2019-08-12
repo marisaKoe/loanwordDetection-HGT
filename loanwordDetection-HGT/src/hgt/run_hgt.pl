@@ -145,8 +145,9 @@ if( ($generoot eq "file") && ( ! -e $generootfile) ){
   #===========================================================================
   #======================== EXECUTION DU PROGRAMME ===========================
   #===========================================================================
+  print "before cmd";
   $cmd .= "-inputfile=$tmp_input -outputfile=$outputfile"; # > $log_file";
-  
+  print "after cmd";
   my $nbTrees = 0 ; # scalar @trees_tab - 1;
   if($bootstrap eq "yes"){
 	#$nbTrees -= 1; 
