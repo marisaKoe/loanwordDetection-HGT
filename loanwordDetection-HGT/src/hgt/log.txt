@@ -1,0 +1,211 @@
+
+hgt : reading options
+hgt : reading the input file
+hgt : adding the tree roots
+hgt : pre-treatment process
+===============================================
+| CRITERIA VALUES BEFORE DETECTION 
+| RF distance  = 170
+| LS criterion = 11105071.4
+| BD criterion = 399.5
+===============================================
+
+hgt : start of detection
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=90]
+
+[3 HGTs]
+HGT #1 : [17--114] -> [14--112]
+HGT #2 : [22--111] -> [18--115]
+HGT #3 : [80--199] -> [71--192]
+
+Criteria values after this step :
+RF = 160 | LS = 11104961.94 | BD = 384.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=86]
+
+[1 HGT]
+HGT #4 : [199--192] -> [79--198]
+
+Criteria values after this step :
+RF = 158 | LS = 11104961.88 | BD = 382.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=85]
+
+[23 HGTs]
+HGT #5 : [114--116] -> [15--113]
+HGT #6 : [94--175] -> [109--110]
+HGT #7 : [30--125] -> [31--126]
+HGT #8 : [39--128] -> [137--136]
+HGT #9 : [33--131] -> [34--133]
+HGT #10 : [44--108] -> [11--145]
+HGT #11 : [ 6--142] -> [ 4--140]
+HGT #12 : [148--147] -> [ 3--141]
+HGT #14 : [46--151] -> [48--154]
+HGT #15 : [99--204] -> [102--207]
+HGT #16 : [86--179] -> [206--101]
+HGT #17 : [103--205] -> [51--156]
+HGT #18 : [88--180] -> [95--153]
+HGT #19 : [50--157] -> [187--188]
+HGT #20 : [167--168] -> [66--170]
+HGT #21 : [65--171] -> [61--168]
+HGT #22 : [64--171] -> [165--166]
+HGT #23 : [93--174] -> [92--173]
+HGT #24 : [69--193] -> [89--177]
+HGT #25 : [73--190] -> [72--191]
+HGT #26 : [78--197] -> [76--196]
+
+Criteria values after this step :
+RF = 104 | LS = 10385269.94 | BD = 291.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=60]
+
+[5 HGTs]
+HGT #28 : [131--133] -> [37--130]
+HGT #29 : [116--113] -> [111--115]
+HGT #30 : [179--206] -> [182--184]
+HGT #31 : [70--193] -> [190--191]
+HGT #32 : [195--197] -> [199--198]
+
+Criteria values after this step :
+RF = 90 | LS = 10385258.58 | BD = 275.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=50]
+
+[2 HGTs]
+HGT #33 : [116--111] -> [20--117]
+HGT #34 : [189--194] -> [107-- 1]
+
+Criteria values after this step :
+RF = 84 | LS = 10206397.37 | BD = 262.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=47]
+
+[1 HGT]
+HGT #35 : [21--118] -> [116--117]
+
+Criteria values after this step :
+RF = 82 | LS = 10206393.45 | BD = 260.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=45]
+
+[1 HGT]
+HGT #36 : [29--125] -> [119--118]
+
+Criteria values after this step :
+RF = 78 | LS = 10206388.70 | BD = 250.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=43]
+
+[13 HGTs]
+HGT #37 : [147--141] -> [128--136]
+HGT #38 : [45--150] -> [142--143]
+HGT #39 : [125--124] -> [97--201]
+HGT #40 : [131--132] -> [36--134]
+HGT #41 : [52--157] -> [108--145]
+HGT #42 : [151--154] -> [91--174]
+HGT #43 : [205--156] -> [178--90]
+HGT #44 : [100--203] -> [186--194]
+HGT #45 : [155--49] -> [180--153]
+HGT #46 : [63--162] -> [171--168]
+HGT #47 : [163--162] -> [166--169]
+HGT #49 : [175--173] -> [ 2--149]
+
+Criteria values after this step :
+RF = 50 | LS = 9829216.76 | BD = 174.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=28]
+
+[1 HGT]
+HGT #50 : [157--188] -> [176--181]
+
+Criteria values after this step :
+RF = 46 | LS = 9753149.45 | BD = 160.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=26]
+
+[5 HGTs]
+HGT #51 : [132--134] -> [38--129]
+HGT #52 : [121--124] -> [151--174]
+HGT #53 : [150--47] -> [162--161]
+HGT #54 : [157--155] -> [203--186]
+HGT #55 : [205--178] -> [96--202]
+
+Criteria values after this step :
+RF = 36 | LS = 5126799.21 | BD = 97.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=21]
+
+[1 HGT]
+HGT #56 : [204--207] -> [150--161]
+
+Criteria values after this step :
+RF = 32 | LS = 5718440.68 | BD = 95.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=19]
+
+[3 HGTs]
+HGT #57 : [124--151] -> [13--139]
+HGT #58 : [105--209] -> [205--204]
+HGT #59 : [155--180] -> [202--208]
+
+Criteria values after this step :
+RF = 24 | LS = 3933096.02 | BD = 75.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=16]
+
+[3 HGTs]
+HGT #60 : [132--35] -> [124--139]
+HGT #61 : [147--128] -> [209--205]
+HGT #62 : [159--172] -> [155--208]
+
+Criteria values after this step :
+RF = 10 | LS = 211458.83 | BD = 13.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=10]
+
+[1 HGT]
+HGT #63 : [132--135] -> [43--120]
+
+Criteria values after this step :
+RF = 6 | LS = 211456.39 | BD = 11.50
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=6]
+
+[1 HGT]
+HGT #64 : [172--158] -> [143--152]
+
+Criteria values after this step :
+RF = 2 | LS = 1527.69 | BD = 1.00
+
+
+== NEW STEP OF DETECTION == [size of the trees (after reduction)=5]
+
+[1 HGT]
+HGT #65 : [104--200] -> [158--152]
+
+Criteria values after this step :
+RF = 0 | LS = 2.11 | BD = 0.00
+
+hgt : formatting the results
+hgt : Transfer 13 was found to be idle
+hgt : Transfer 23 was found to be idle
+hgt : Transfer 27 was found to be idle
+hgt : Transfer 48 was found to be idle
+hgt : Transfer 55 was found to be idle
+hgt : number of HGT(s) found = 60 
+hgt : end of computation, check the file results.txt for the program output
