@@ -48,33 +48,40 @@ def create_files(pathCT, pathBS, method):
         ##file contains only one line
         lt = flt.readline()
     
-    CTFiles = glob.glob(pathCT+"*.nwk.rooted")
+    CTFiles = glob.glob(pathCT+"*.rooted")
     BSFiles = glob.glob(pathBS+"*.rooted")
+
     ##fill the dictionary with the file names
     fileDict = defaultdict(list)
     overallDict = defaultdict(dict)
+    count = 0
     for ctName in CTFiles:
+        #print ctName
         concept = ctName.split("/")[-1].split(".")[0]
-        if "[" and "]" in concept:
-            concept = concept.replace("[","").replace("]","")
+        ###if statement only needed for pmi methods
+        #if "[" and "]" in concept:
+        #    concept = concept.replace("[","").replace("]","")
         #print concept
         for bsName in BSFiles:
             if concept in bsName:
+                count += 1
                 fileDict[concept] = [ctName,bsName]
-                
+    #print count
+    #print len(fileDict)
     ##read the files for each concepts and glue them together into one         
     for concept, fileList in fileDict.items():
         ##open concept tree
         with open(fileList[0],"r") as fct:
             ##concept tree contains one line
             ct = fct.readline()
+        
         ##open bs samples (100 trees)
         with open(fileList[1],"r") as fbs:
             bs = fbs.readlines()
-            
+          
         ##write files into folder
-        path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/inputFilesHGT/"+method+"/"+concept+"+hgt.nwk"
-        overallDict[method][concept]=path
+        path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+        #overallDict[method][concept]=path
         with open(path,"w") as fout:
             fout.write(lt+ct)
             for line in bs:
@@ -93,9 +100,15 @@ def create_files(pathCT, pathBS, method):
 
 
 if __name__ == '__main__':
-    method = "pmiMultidata"
-    pathCT = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
-    pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
+    ###pmi multipleData
+    #method = "pmiMultidata"
+    #pathCT = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
+    #pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
+    #create_files(pathCT, pathBS,method)
+    ##ml ngramsNW
+    method = "ML_ngramsNW"
+    pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/iqTrees/"
+    pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/bootstrapReplicates/"
     create_files(pathCT, pathBS,method)
     
     
