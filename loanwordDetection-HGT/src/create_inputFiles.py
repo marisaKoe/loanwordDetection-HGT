@@ -62,12 +62,12 @@ def create_files(pathCT, pathBS, method):
     for ctName in CTFiles:
         print ctName
         ##get the name of the concept
-        concept = ctName.split("/")[-1].split(".")[0]
-        print concept
+        concept = ctName.split("/")[-1].split("+")[-1].split(".")[0]
+        print "first time", concept
         ###if statement only needed for pmi methods
         if "[" and "]" in concept:
             concept = concept.replace("[","").replace("]","")
-        print concept
+        print "second time", concept
         ##read the concpet tree in dendropy
         conTree = Tree.get(path=ctName, schema="newick",rooting="default-rooted")
         ##get list of leaves for the concept tree
@@ -76,7 +76,7 @@ def create_files(pathCT, pathBS, method):
         ##if the lists are equal, no pruning is necessary
         if len(nodes_list_exp) == len(nodes_list_con):
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            pathConceptExTree = path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             expertTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
         ##otherwise, prune language tree according to the leaves in the concept tree
@@ -86,16 +86,19 @@ def create_files(pathCT, pathBS, method):
             ##prune the language tree with the node list of the concept tree
             conceptExTree.retain_taxa_with_labels(nodes_list_con)
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            pathConceptExTree = path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             conceptExTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
         
         ###if statement only needed for pmi methods
         #if "[" and "]" in concept:
         #    concept = concept.replace("[","").replace("]","")
-        #print concept
+        print "hello concept", concept
         for bsName in BSFiles:
+            #print bsName
+            
             if concept in bsName:
+                print "im in the string", concept
                 count += 1
                 fileDict[concept] = [ctName,bsName]
     #print count
@@ -103,6 +106,7 @@ def create_files(pathCT, pathBS, method):
     ##read the files for each concepts and glue them together into one   
           
     for concept, fileList in fileDict.items():
+        print concept, fileList
         ##open concept tree
         with open(fileList[0],"r") as fct:
             ##concept tree contains one line
@@ -113,7 +117,7 @@ def create_files(pathCT, pathBS, method):
             bs = fbs.readlines()
           
         ##write files into folder
-        path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+        path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
         #overallDict[method][concept]=path
         with open(path,"a") as fout:
             fout.write(ct)
@@ -134,15 +138,20 @@ def create_files(pathCT, pathBS, method):
 
 if __name__ == '__main__':
     ###pmi multipleData
-    method = "pmiMultidata"
-    pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
-    pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
-    create_files(pathCT, pathBS,method)
+    #method = "pmiMultidata"
+    #pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
+    #pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
+    #create_files(pathCT, pathBS,method)
     ##ml ngramsNW
     #method = "ML_ngramsNW"
     #pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/iqTrees/"
     #pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/bootstrapReplicates/"
     #create_files(pathCT, pathBS,method)
+    ###mb NW
+    method= "MB_NW"
+    pathCT = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/MrBayes_Trees/mccTrees/"
+    pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-MADRooting/NELex/MB_NW/"
+    create_files(pathCT, pathBS,method)
     
     
     
