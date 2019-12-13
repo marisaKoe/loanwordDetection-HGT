@@ -60,14 +60,15 @@ def create_files(pathCT, pathBS, method):
     overallDict = defaultdict(dict)
     count = 0
     for ctName in CTFiles:
-        print ctName
+        #print ctName
         ##get the name of the concept
         concept = ctName.split("/")[-1].split("+")[-1].split(".")[0]
-        print "first time", concept
+        #print "first time", concept
         ###if statement only needed for pmi methods
-        if "[" and "]" in concept:
-            concept = concept.replace("[","").replace("]","")
-        print "second time", concept
+        #if "[" and "]" in concept:
+        #    print concept
+        #    concept = concept.replace("[","").replace("]","")
+        #print "second time", concept
         ##read the concpet tree in dendropy
         conTree = Tree.get(path=ctName, schema="newick",rooting="default-rooted")
         ##get list of leaves for the concept tree
@@ -89,16 +90,16 @@ def create_files(pathCT, pathBS, method):
             pathConceptExTree = path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             conceptExTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
-        
+         
         ###if statement only needed for pmi methods
         #if "[" and "]" in concept:
         #    concept = concept.replace("[","").replace("]","")
-        print "hello concept", concept
+        #print "hello concept", concept
         for bsName in BSFiles:
             #print bsName
-            
+            #concept = concept.replace("[","").replace("]","")
             if concept in bsName:
-                print "im in the string", concept
+                #print "im in the string", concept
                 count += 1
                 fileDict[concept] = [ctName,bsName]
     #print count
@@ -106,7 +107,7 @@ def create_files(pathCT, pathBS, method):
     ##read the files for each concepts and glue them together into one   
           
     for concept, fileList in fileDict.items():
-        print concept, fileList
+        #print concept, fileList
         ##open concept tree
         with open(fileList[0],"r") as fct:
             ##concept tree contains one line
