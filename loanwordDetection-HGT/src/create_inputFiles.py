@@ -60,24 +60,40 @@ def create_files(pathCT, pathBS, method):
     overallDict = defaultdict(dict)
     count = 0
     for ctName in CTFiles:
+<<<<<<< HEAD
         #print ctName
+=======
+        
+>>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
         ##get the name of the concept
         concept = ctName.split("/")[-1].split("+")[-1].split(".")[0]
+<<<<<<< HEAD
         #print "first time", concept
+=======
+        print "first time", concept
+        ###comment out for mtbayes analysis
+>>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
         ###if statement only needed for pmi methods
+<<<<<<< HEAD
         #if "[" and "]" in concept:
         #    print concept
         #    concept = concept.replace("[","").replace("]","")
+=======
+#         if "[" and "]" in concept:
+#             print ctName
+#             concept = concept.replace("[","").replace("]","")
+#             print concept
+>>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
         #print "second time", concept
         ##read the concpet tree in dendropy
         conTree = Tree.get(path=ctName, schema="newick",rooting="default-rooted")
         ##get list of leaves for the concept tree
         nodes_list_con = [n.taxon.label for n in conTree.leaf_node_iter()]
-        print len(nodes_list_con)
+        #print len(nodes_list_con)
         ##if the lists are equal, no pruning is necessary
         if len(nodes_list_exp) == len(nodes_list_con):
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             expertTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
         ##otherwise, prune language tree according to the leaves in the concept tree
@@ -87,7 +103,7 @@ def create_files(pathCT, pathBS, method):
             ##prune the language tree with the node list of the concept tree
             conceptExTree.retain_taxa_with_labels(nodes_list_con)
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             conceptExTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
          
@@ -118,7 +134,7 @@ def create_files(pathCT, pathBS, method):
             bs = fbs.readlines()
           
         ##write files into folder
-        path = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+        path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
         #overallDict[method][concept]=path
         with open(path,"a") as fout:
             fout.write(ct)
@@ -150,8 +166,8 @@ if __name__ == '__main__':
     #create_files(pathCT, pathBS,method)
     ###mb NW
     method= "MB_NW"
-    pathCT = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/MrBayes_Trees/mccTrees/"
-    pathBS = "/home/marisa/Dropbox/EVOLAEMP/projects/Project-MADRooting/NELex/MB_NW/"
+    pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/MrBayes_Trees/mccTrees/"
+    pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-MADRooting/NELex/MB_NW/"
     create_files(pathCT, pathBS,method)
     
     
