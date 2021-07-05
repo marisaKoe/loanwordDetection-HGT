@@ -26,7 +26,7 @@ Char-based MB
 + LT rooted in input folder (mccTreeMB.nwk.rooted)
 
 
-################    TODO    #################
+#################################
 if all trees are ready:
 create a dictionary with key = method and value=list of files
 go through the dict and do analysis for each method
@@ -44,10 +44,7 @@ def create_files(pathCT, pathBS, method):
     :param pathCT: path to the concept tree
     :param pathBS: path to the 100 BS replicates
     '''
-    ##read language tree
-    #with open("input/mccTreeMB.nwk.rooted","r") as flt:
-        ##file contains only one line
-        #lt = flt.readline()
+
     ##read the expert tree in dendropy
     expertTree = Tree.get(path="input/mccTreeMB.nwk.rooted", schema="newick",rooting="default-rooted")
     nodes_list_exp = [n.taxon.label for n in expertTree.leaf_node_iter()]
@@ -61,14 +58,13 @@ def create_files(pathCT, pathBS, method):
     count = 0
     for ctName in CTFiles:
 <<<<<<< HEAD
-        #print ctName
 =======
         
 >>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
         ##get the name of the concept
         concept = ctName.split("/")[-1].split("+")[-1].split(".")[0]
 <<<<<<< HEAD
-        #print "first time", concept
+        
 =======
         print "first time", concept
         ###comment out for mtbayes analysis
@@ -84,12 +80,11 @@ def create_files(pathCT, pathBS, method):
 #             concept = concept.replace("[","").replace("]","")
 #             print concept
 >>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
-        #print "second time", concept
+       
         ##read the concpet tree in dendropy
         conTree = Tree.get(path=ctName, schema="newick",rooting="default-rooted")
         ##get list of leaves for the concept tree
         nodes_list_con = [n.taxon.label for n in conTree.leaf_node_iter()]
-        #print len(nodes_list_con)
         ##if the lists are equal, no pruning is necessary
         if len(nodes_list_exp) == len(nodes_list_con):
             ##get the path for the language tree
@@ -112,18 +107,14 @@ def create_files(pathCT, pathBS, method):
         #    concept = concept.replace("[","").replace("]","")
         #print "hello concept", concept
         for bsName in BSFiles:
-            #print bsName
             #concept = concept.replace("[","").replace("]","")
             if concept in bsName:
-                #print "im in the string", concept
                 count += 1
                 fileDict[concept] = [ctName,bsName]
-    #print count
-    #print len(fileDict)
+
     ##read the files for each concepts and glue them together into one   
           
     for concept, fileList in fileDict.items():
-        #print concept, fileList
         ##open concept tree
         with open(fileList[0],"r") as fct:
             ##concept tree contains one line

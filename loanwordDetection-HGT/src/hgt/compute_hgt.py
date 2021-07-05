@@ -14,10 +14,6 @@ the algorithm is an executable and a pearl script
 + move files, which are need for further analysis -> rename them
     - output.txt
     - results.txt
-    
-check segmentation fault (core dumped)
--> not sure whether this fault can be solved her. seems to have sth to do with the folder structure. Move everything into another folder and run it on the server.
-
 '''
 import glob, subprocess, os, shutil
 import create_inputFiles
@@ -27,17 +23,12 @@ def hgt_computation_fromFiles():
     ##get all files containing the trees for the computation for each concept
     listfiles = glob.glob("/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataInput/*.nwk")
     
-    ##testing
-    #listfiles = glob.glob("/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/eclipse/*.nwk")
+  
     for treefile in listfiles:
-        print treefile
         ##concept name
         concept = treefile.split("/")[-1].split("+")[0]
-        print concept
         run_hgt(concept, treefile)
-        
-    #for filename in os.listdir("temp"):
-    #    os.remove(os.path.join("temp",filename))
+
     
 
 def hgt_computation_run(pathCT, pathBS, method):
