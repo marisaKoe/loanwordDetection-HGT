@@ -21,7 +21,8 @@ import create_inputFiles
 def hgt_computation_fromFiles():
     
     ##get all files containing the trees for the computation for each concept
-    listfiles = glob.glob("/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataInput/*.nwk")
+    ##glob reads all files contained in one folder and stores it in a list of files
+    listfiles = glob.glob("path to folder containing concept tree files")
     
   
     for treefile in listfiles:
@@ -38,33 +39,22 @@ def hgt_computation_run(pathCT, pathBS, method):
     for method, conceptDict in overallDict.items():
         for concept, treefile in conceptDict.items():
             run_hgt(concept, treefile)
-#             p = subprocess.Popen('exec perl ./run_hgt.pl -inputfile='+treefile,stdout=subprocess.PIPE,shell=True)
-#             os.waitpid(p.pid,0)
-#             p.kill()
-#             ####move relevant files
-#             #move output.txt
-#             shutil.move("output.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+output.txt")
-#             ##move results.txt
-#             shutil.move("results.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+results.txt")
-#             ##move log.txt
-#             shutil.move("log.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Output/"+concept+"+log.txt")
-#                 
+                
 
     
 def run_hgt(concept,treefile):
-        print "in hgt run"
-        print treefile
         #p = subprocess.Popen('exec perl ./run_hgt.pl -inputfile='+treefile,stdout=subprocess.PIPE,shell=True)
+        ##runs the hgt script! Please make sure you downladed the program and ajust the command for your purpose
         p = subprocess.Popen('perl ./run_hgt.pl -inputfile='+treefile+' -bootstrap=yes',shell=True)
         os.waitpid(p.pid,0)
         #p.kill()
-        ####move relevant files
+        ####move relevant files - please insert your preferred path to the folder you would like to store the files
         ##move output.txt
-        shutil.move("output.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+output.txt")
+        shutil.move("output.txt","path-to-folder"+concept+"+output.txt")
         ##move results.txt
-        shutil.move("results.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+results.txt")
+        shutil.move("results.txt","path-to-folder"+concept+"+results.txt")
         ##move log.txt
-        shutil.move("log.txt","/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/pmiMultidataOutput/"+concept+"+log.txt")
+        shutil.move("log.txt","path-to-folder"+concept+"+log.txt")
 
 if __name__ == '__main__':
     method = "pmiMultidata"

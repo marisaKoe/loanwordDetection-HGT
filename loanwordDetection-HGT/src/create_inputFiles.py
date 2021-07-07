@@ -12,26 +12,24 @@ input file:
 Distance-based Method (PMI_MultipleData)
 ==========================================
 + LT rooted in input folder (mccTreeMB.nwk.rooted)
-+ CT rooted: "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
-+ 100 BS rooted: "/home/marisa/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/inputTrees/"+method+"/*.nwk" method = pmiMultidata
++ CT rooted
++ 100 BS rooted
 
 Char-based ML (NgramsNW)
 =========================
 + LT rooted in input folder (mccTreeMB.nwk.rooted)
-
++ CT rooted
++ 100 BS rooted
 
 
 Char-based MB
 ==============
 + LT rooted in input folder (mccTreeMB.nwk.rooted)
++ CT rooted
++ 100 BS rooted
 
+Please insert path to input and output folders
 
-#################################
-if all trees are ready:
-create a dictionary with key = method and value=list of files
-go through the dict and do analysis for each method
-
-+ check method since it is not clear if the concepts for each method contain []
 '''
 
 import glob, collections, dendropy
@@ -57,29 +55,19 @@ def create_files(pathCT, pathBS, method):
     overallDict = defaultdict(dict)
     count = 0
     for ctName in CTFiles:
-<<<<<<< HEAD
-=======
-        
->>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
         ##get the name of the concept
         concept = ctName.split("/")[-1].split("+")[-1].split(".")[0]
-<<<<<<< HEAD
-        
-=======
-        print "first time", concept
+
         ###comment out for mtbayes analysis
->>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
+
         ###if statement only needed for pmi methods
-<<<<<<< HEAD
         #if "[" and "]" in concept:
         #    print concept
         #    concept = concept.replace("[","").replace("]","")
-=======
 #         if "[" and "]" in concept:
 #             print ctName
 #             concept = concept.replace("[","").replace("]","")
 #             print concept
->>>>>>> branch 'master' of https://github.com/marisaKoe/loanwordDetection-HGT.git
        
         ##read the concpet tree in dendropy
         conTree = Tree.get(path=ctName, schema="newick",rooting="default-rooted")
@@ -88,7 +76,8 @@ def create_files(pathCT, pathBS, method):
         ##if the lists are equal, no pruning is necessary
         if len(nodes_list_exp) == len(nodes_list_con):
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            ##please insert path to folder
+            pathConceptExTree = path = "path-to-folder"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             expertTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
         ##otherwise, prune language tree according to the leaves in the concept tree
@@ -98,7 +87,8 @@ def create_files(pathCT, pathBS, method):
             ##prune the language tree with the node list of the concept tree
             conceptExTree.retain_taxa_with_labels(nodes_list_con)
             ##get the path for the language tree
-            pathConceptExTree = path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+            ##please insert path to folder
+            pathConceptExTree = path = "path-to-folder"+method+"Input/"+concept+"+hgt.nwk"
             ##write the language tree in a file
             conceptExTree.write(path=pathConceptExTree, schema="newick",suppress_rooting=True)
          
@@ -125,7 +115,8 @@ def create_files(pathCT, pathBS, method):
             bs = fbs.readlines()
           
         ##write files into folder
-        path = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/NELex/"+method+"Input/"+concept+"+hgt.nwk"
+        ##please insert path to folder
+        path = "path-to-folder"+method+"Input/"+concept+"+hgt.nwk"
         #overallDict[method][concept]=path
         with open(path,"a") as fout:
             fout.write(ct)
@@ -145,20 +136,10 @@ def create_files(pathCT, pathBS, method):
 
 
 if __name__ == '__main__':
-    ###pmi multipleData
-    #method = "pmiMultidata"
-    #pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-DistanceMethods/NELex/PMI_based_methods/PMI_multipleData_rootedTrees/"
-    #pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-Borrowing-hgt/rootingMAD/NELex/"+method+"/"
-    #create_files(pathCT, pathBS,method)
-    ##ml ngramsNW
-    #method = "ML_ngramsNW"
-    #pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/iqTrees/"
-    #pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/ML_iqtree/NgramsNW/bootstrapReplicates/"
-    #create_files(pathCT, pathBS,method)
-    ###mb NW
-    method= "MB_NW"
-    pathCT = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-ConceptTrees-CharacterBased/NELex/MrBayes_Trees/mccTrees/"
-    pathBS = "/home/marisakoe/Dropbox/EVOLAEMP/projects/Project-MADRooting/NELex/MB_NW/"
+    ##please insert path to files
+    pathCT = "path-to-concept-tree-files"
+    pathBS = "path-to-bootstrapReplicates-concept-trees"
+    method = "name of the concept tree reconstruction method"
     create_files(pathCT, pathBS,method)
     
     
